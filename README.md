@@ -1,2 +1,3 @@
 # Email List Creator
-Create email lists from spreadsheets
+<br />
+A super easy and user-friendly utility that allows you to create an email list
