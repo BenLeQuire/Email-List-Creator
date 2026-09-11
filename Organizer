@@ -7,12 +7,12 @@ def greeter(path):
     check_path = Path(path)
     if check_path.is_file():
         time.sleep(0.25)
-        print("\nFile found!")
+        print("File found!")
         create_list(path)
         #print(data.head)
     else:
          time.sleep(0.25)
-         print(f"\nError! The file {path} does not exist" )
+         print(f"Error! The file {path} does not exist" )
          time.sleep(1)
          return 0
 
@@ -44,8 +44,8 @@ def create_list (path):
     
     #Appending emails to data list
     for i in dictionary_list:
-        email = i[str(email_column)]
-        name = i[str(name_column)]
+        email = str(i[str(email_column)])
+        name = str(i[str(name_column)])
         #Adding emails to list
         if email != 'nan':
             if email.endswith("@ccsdschools.com") or email.endswith("@gmail.com"):
