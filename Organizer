@@ -20,11 +20,12 @@ def greeter(path):
 def create_list (path):
     #Turn entries in CSV into dictionaries
     data = pd.read_csv(path)
-    dictionary = data.to_dict("records")
+    dictionary_list = data.to_dict("records")
     #print(dictionary)
     
     #checking for correct columns
-    email_column = str(input("\nWhat did you title the column where you put the emails? (Be careful, this is case sensitive)" ))
+    dictionary = dictionary_list[1]
+    email_column = str(input("\nWhat did you title the column where you put the emails? (Be careful, this is case sensitive) " ))
     if email_column in dictionary:
          time.sleep(0.25)
          print("Email column found!")
@@ -32,7 +33,7 @@ def create_list (path):
          time.sleep(0.25)
          print("Error! No email column found")
          return 0
-    name_column = str(input("\nWhat did you title the column where you put the names? (Be careful, this is case sensitive)" ))
+    name_column = str(input("\nWhat did you title the column where you put the names? (Be careful, this is case sensitive) " ))
     if name_column in dictionary:
             time.sleep(0.25)
             print("Email column found!")
@@ -42,9 +43,9 @@ def create_list (path):
          return 0
     
     #Appending emails to data list
-    for i in dictionary:
-        email = str(i['Email'])
-        name = str(i['Name'])
+    for i in dictionary_list:
+        email = str(email_column)
+        name = str(name_column)
         #Adding emails to list
         if email != 'nan':
             if email.endswith("@ccsdschools.com") or email.endswith("@gmail.com"):
