@@ -102,7 +102,7 @@ def create_list (path):
 
 if __name__ == "__main__":
      email_list = []
-     print("Email List Generator")
+     print("\nEmail List Generator")
      time.sleep(0.1)
      print("By Ben LeQuire")
      time.sleep(0.1)
