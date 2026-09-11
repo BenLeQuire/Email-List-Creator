@@ -44,8 +44,8 @@ def create_list (path):
     
     #Appending emails to data list
     for i in dictionary_list:
-        email = str(email_column)
-        name = str(name_column)
+        email = i[str(email_column)]
+        name = i[str(name_column)]
         #Adding emails to list
         if email != 'nan':
             if email.endswith("@ccsdschools.com") or email.endswith("@gmail.com"):
