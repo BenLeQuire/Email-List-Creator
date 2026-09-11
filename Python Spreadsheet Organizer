@@ -1,0 +1,113 @@
+import pandas as pd
+from pathlib import Path
+import time
+
+#Determining CSV path
+def greeter(path):
+    check_path = Path(path)
+    if check_path.is_file():
+        time.sleep(0.25)
+        print("\nFile found!")
+        create_list(path)
+        #print(data.head)
+    else:
+         time.sleep(0.25)
+         print(f"\nError! The file {path} does not exist" )
+         time.sleep(1)
+         return 0
+
+
+def create_list (path):
+    #Turn entries in CSV into dictionaries
+    data = pd.read_csv(path)
+    dictionary = data.to_dict("records")
+    #print(dictionary)
+    
+    #checking for correct columns
+    email_column = str(input("\nWhat did you title the column where you put the emails? (Be careful, this is case sensitive)" ))
+    if email_column in dictionary:
+         time.sleep(0.25)
+         print("Email column found!")
+    else:
+         time.sleep(0.25)
+         print("Error! No email column found")
+         return 0
+    name_column = str(input("\nWhat did you title the column where you put the names? (Be careful, this is case sensitive)" ))
+    if name_column in dictionary:
+            time.sleep(0.25)
+            print("Email column found!")
+    else:
+         time.sleep(0.25)
+         print("Error! No name column found")
+         return 0
+    
+    #Appending emails to data list
+    for i in dictionary:
+        email = str(i['Email'])
+        name = str(i['Name'])
+        #Adding emails to list
+        if email != 'nan':
+            if email.endswith("@ccsdschools.com") or email.endswith("@gmail.com"):
+                #print(email)
+                email_list.append(email)
+            elif "@ccsd" in email:
+                char = "@"
+                print(f"\nError! {name}'s email is malformed! {email} is not a valid email!")
+                string = email.split(char, 1)[0]
+                email = string + "@ccsdschools.com"
+                #print(f'New email: {email}')
+                time.sleep(0.25)
+                confirm = input(f"The correct email should be {email}. Add it to the email list? (y/n) ")
+                if confirm == "y" or confirm == "Y" or confirm == "yes" or confirm == "Yes":
+
+                    print("Email added to list")
+                    email_list.append(email)
+                elif confirm == "n" or confirm == "N" or confirm == "No" or confirm == "no":
+                    time.sleep(0.25)
+                    print("Ok, not adding email to list")
+                else:
+                    time.sleep(0.25)
+                    print("Ok, not adding email to list")
+            else:
+                email = email + "@ccsdschools.com"
+                #print(email)
+                email_list.append(email)
+        elif email == 'nan' and name != 'nan':
+            print(f'\nError! {name} does not have an email! ')
+            time.sleep(0.25)
+            confirm = input(f"Would you like to add an email for {name}? (y/n) ")
+            if confirm == "y" or confirm == "Y" or confirm == "yes" or confirm == "Yes":
+                        time.sleep(0.25)
+                        email = str(input(f"What is {name}'s email? "))
+                        email_list.append(email)
+                        time.sleep(0.25)
+                        print(f"The email {email} was added to the list")
+            elif confirm == "n" or confirm == "N" or confirm == "No" or confirm == "no":
+                time.sleep(0.25)
+                print("Ok, not adding email to list")
+            else:
+                time.sleep(0.25)
+                print("Ok, not adding email to list")
+        else:
+            pass
+
+    #Output list to csv
+    email_frame = pd.DataFrame(email_list)
+    #print(email_frame.head())
+    file_name = str(input("\nWhat would you like the email list to be called? "))
+    email_frame.to_csv(file_name, index=False, header=False)
+    time.sleep(0.75)
+    print(f"\nYour file is saved as {file_name}.csv!")
+    exit()
+
+if __name__ == "__main__":
+     email_list = []
+     print("Email List Generator")
+     time.sleep(0.1)
+     print("By Ben LeQuire")
+     time.sleep(0.1)
+     print("For this program to work, plese download your spreadsheet as a .csv file and make sure your collumns have names")
+     time.sleep(0.25)
+
+     path = str(input("\nWhat is the file path of the csv? (Make sure to include .csv at the end of the file name)"))
+     greeter(path)
