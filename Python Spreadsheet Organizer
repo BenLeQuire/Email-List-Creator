@@ -109,5 +109,5 @@ if __name__ == "__main__":
      print("For this program to work, plese download your spreadsheet as a .csv file and make sure your collumns have names")
      time.sleep(0.25)
 
-     path = str(input("\nWhat is the file path of the csv? (Make sure to include .csv at the end of the file name)"))
+     path = str(input("\nWhat is the file path of the csv? (Make sure to include .csv at the end of the file name) "))
      greeter(path)
