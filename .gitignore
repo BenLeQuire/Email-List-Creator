@@ -1,2 +1,5 @@
 .DS_Store
 .gitattributes
+build
+dist
+Organizer.spec
